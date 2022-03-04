@@ -19,7 +19,7 @@ console.log(previewImages[0]);
 const gallery = document.querySelector(".gallery");
 
 
-const modalLink = document.querySelector(".url")
+const modalLink = document.querySelector(".gallery__link");
 createImageGallery();
 // gallery.addEventListener("click", selectItem());
 
@@ -35,21 +35,27 @@ function createImageGallery(){
     for (let i = 0; i < galleryItems.length; i++) {
         const urlLink = document.createElement("a");
         urlLink.href = `${originalImages[i]}`;
-        urlLink.classList.add("url");
+        urlLink.classList.add("gallery__link");
+        
         const item = document.createElement("img");
         item.src = `${previewImages[i]}`;
-        item.classList.add("item");
-        item.data-source = "large-image.jpg";
+        item.classList.add("gallery__image");
+        item["data-source"] = `${previewImages[i]}`;
+        item.setAttribute('data-source', `${previewImages[i]}`);
         
         items.push(item);
         urlLinks.push(urlLink);
+        
+        
 
     }
+    
     gallery.append(...items);
    gallery.append(...urlLinks);
-   //urlLinks[0].insertAdjacentHTML("afterbegin", items[0]);
-   modalLink.insertAdjacentHTML("afterbegin", items[0]);
-
+   
+   for (let x = 0; x < urlLinks.length; x++){
+    urlLinks[x].appendChild(items[x]); 
+}
 }
 
 console.log(galleryItems);
