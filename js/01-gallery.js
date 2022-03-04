@@ -1,6 +1,9 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
+
+
+
 const previewImages = [];
 const originalImages = [];
 const descriptionImages = [];
@@ -18,9 +21,17 @@ console.log(previewImages[0]);
 
 const gallery = document.querySelector(".gallery");
 
-
-const modalLink = document.querySelector(".gallery__link");
 createImageGallery();
+const modalLinks = [];
+const modalLink = document.querySelectorAll(".gallery__link");
+//console.log(modalLink);
+
+// for (const link of modalLink){
+//     modalLinks.push(link);
+// }
+// console.log(modalLinks);
+
+
 // gallery.addEventListener("click", selectItem());
 
 // function selectItem(event) {
@@ -42,9 +53,11 @@ function createImageGallery(){
         item.classList.add("gallery__image");
         item["data-source"] = `${previewImages[i]}`;
         item.setAttribute('data-source', `${previewImages[i]}`);
-        
+        item.alt = `${descriptionImages[i]}`;
+
         items.push(item);
         urlLinks.push(urlLink);
+
         
         
 
@@ -55,7 +68,32 @@ function createImageGallery(){
    
    for (let x = 0; x < urlLinks.length; x++){
     urlLinks[x].appendChild(items[x]); 
+    urlLinks[x].addEventListener("click", (event) => {
+        event.preventDefault();
+    })
+    urlLinks[x].onclick = () => {
+
+        basicLightbox.create('
+            <img width="1400" height="900" src=`${urlLinks[x]}`>
+        '').show()
+    
+    }
 }
 }
 
 console.log(galleryItems);
+
+const lightbox = document.createElement('div');
+lightbox.id = 'lightbox';
+document.body.appendChild(lightbox);
+
+// const imageInstance = basicLightbox.create(document.querySelector('gallery__link'));
+// document.querySelector('a.image').onclick = imageInstance.show
+
+document.querySelector('.gallery__link').onclick = () => {
+
+	basicLightbox.create(`
+		<img width="1400" height="900" src="https://placehold.it/1400x900">
+	`).show()
+
+}
