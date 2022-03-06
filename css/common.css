@@ -25,11 +25,3 @@ button {
   cursor: pointer;
 }
 
-#lightbox {
-  position: fixed;
-  z-index: 1000;
-  height: 100%;
-  width: 100%;
-  background-color: black;
-  display: none;
-}
