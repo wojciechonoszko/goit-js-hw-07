@@ -53,7 +53,8 @@ function createImageGallery(){
     const galleryImage = document.querySelector('.gallery__image');
     console.log(galleryImage)
     galleryImage.onclick = () => {
-        const modalImage = basicLightbox.create(`<img src=`+`${galleryImage["data-source"]}`+`>`);
+        const modalImage = basicLightbox.create(`<img src=`+`${galleryImage["data-source"]}`+`>`
+        );
 
 modalImage.show()
     
